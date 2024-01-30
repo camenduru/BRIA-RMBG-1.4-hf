@@ -1,8 +1,6 @@
-transformers
 gradio
 torch
 torchvision
 pillow
 numpy
-os
 typing
