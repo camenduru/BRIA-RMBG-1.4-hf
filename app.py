@@ -51,10 +51,11 @@ def resize_image(image):
     return image
 
 
-def process(input_image):
+def process(image):
 
     # prepare input
-    orig_image = input_image
+    print(type(image))
+    orig_image = image
     w,h = orig_im_size = orig_image.size
     image = resize_image(orig_image)
     im_np = np.array(image)
