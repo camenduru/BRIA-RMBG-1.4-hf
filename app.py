@@ -4,7 +4,7 @@ from torchvision.transforms.functional import normalize
 import gradio as gr
 import git  # pip install gitpython
 
-git.Git(".").clone("https://huggingface.co/spaces/briaai/BRIA-RMBG-1.4")
+git.Git(".").clone("https://huggingface.co/briaai/RMBG-1.4")
 from briarmbg import BriaRMBG
 
 net=BriaRMBG()
