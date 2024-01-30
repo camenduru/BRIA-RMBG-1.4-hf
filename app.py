@@ -83,25 +83,34 @@ def process(input_image):
     return [new_im]
 
 
-block = gr.Blocks().queue()
+# block = gr.Blocks().queue()
 
-with block:
-    gr.Markdown("## BRIA RMBG 1.4")
-    gr.HTML('''
-      <p style="margin-bottom: 10px; font-size: 94%">
-        This is a demo for BRIA RMBG 1.4 that using
-        <a href="https://huggingface.co/briaai/RMBG-1.4" target="_blank">BRIA RMBG-1.4 image matting model</a> as backbone. 
-      </p>
-    ''')
-    with gr.Row():
-        with gr.Column():
-            input_image = gr.Image(sources=None, type="pil") # None for upload, ctrl+v and webcam
-            # input_image = gr.Image(sources=None, type="numpy") # None for upload, ctrl+v and webcam
-            run_button = gr.Button(value="Run")
+# with block:
+#     gr.Markdown("## BRIA RMBG 1.4")
+#     gr.HTML('''
+#       <p style="margin-bottom: 10px; font-size: 94%">
+#         This is a demo for BRIA RMBG 1.4 that using
+#         <a href="https://huggingface.co/briaai/RMBG-1.4" target="_blank">BRIA RMBG-1.4 image matting model</a> as backbone. 
+#       </p>
+#     ''')
+#     with gr.Row():
+#         with gr.Column():
+#             input_image = gr.Image(sources=None, type="pil") # None for upload, ctrl+v and webcam
+#             # input_image = gr.Image(sources=None, type="numpy") # None for upload, ctrl+v and webcam
+#             run_button = gr.Button(value="Run")
             
-        with gr.Column():
-            result_gallery = gr.Gallery(label='Output', show_label=False, elem_id="gallery", columns=[1], height='auto')
-    ips = [input_image]
-    run_button.click(fn=process, inputs=ips, outputs=[result_gallery])
+#         with gr.Column():
+#             result_gallery = gr.Gallery(label='Output', show_label=False, elem_id="gallery", columns=[1], height='auto')
+#     ips = [input_image]
+#     run_button.click(fn=process, inputs=ips, outputs=[result_gallery])
 
-block.launch(debug = True)
+# block.launch(debug = True)
+
+
+title = "background_removal"
+description = "remove image background"
+examples = [['./input.jpg'],]
+demo = gr.Interface(fn=process,inputs="image",outputs=ImageSlider(position=0.5,label='Image without background slider-view'),examples=examples,title=title,description=description)
+
+if __name__ == "__main__":
+    demo.launch(share=False)
