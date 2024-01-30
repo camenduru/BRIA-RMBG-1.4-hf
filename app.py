@@ -53,7 +53,7 @@ def resize_image(image):
 def process(input_image):
 
     # prepare input
-    orig_image = Image.open(im_path)
+    orig_image = input_image
     w,h = orig_im_size = orig_image.size
     image = resize_image(orig_image)
     im_np = np.array(image)
