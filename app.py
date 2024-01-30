@@ -7,6 +7,7 @@ import gradio as gr
 from briarmbg import BriaRMBG
 import PIL
 from PIL import Image
+from typing import Tuple
 # import git  # pip install gitpython
 
 # hello()
