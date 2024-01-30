@@ -80,7 +80,7 @@ def process(input_image):
     new_im = Image.new("RGBA", pil_im.size, (0,0,0))
     new_im.paste(orig_image, mask=pil_im)
 
-    return new_im
+    return [input_image,new_im]
 
 
 block = gr.Blocks().queue()
