@@ -80,7 +80,7 @@ def process(input_image):
     new_im = Image.new("RGBA", pil_im.size, (0,0,0))
     new_im.paste(orig_image, mask=pil_im)
 
-    return [input_image,new_im]
+    return [new_im]
 
 
 block = gr.Blocks().queue()
@@ -100,7 +100,7 @@ with block:
             run_button = gr.Button(value="Run")
             
         with gr.Column():
-            result_gallery = gr.Gallery(label='Output', show_label=False, elem_id="gallery", columns=[2], height='auto')
+            result_gallery = gr.Gallery(label='Output', show_label=False, elem_id="gallery", columns=[1], height='auto')
     ips = [input_image]
     run_button.click(fn=process, inputs=ips, outputs=[result_gallery])
 
