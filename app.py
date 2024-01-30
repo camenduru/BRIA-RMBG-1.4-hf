@@ -95,8 +95,8 @@ with block:
     ''')
     with gr.Row():
         with gr.Column():
-            # input_image = gr.Image(sources=None, type="pil") # None for upload, ctrl+v and webcam
-            input_image = gr.Image(sources=None, type="numpy") # None for upload, ctrl+v and webcam
+            input_image = gr.Image(sources=None, type="pil") # None for upload, ctrl+v and webcam
+            # input_image = gr.Image(sources=None, type="numpy") # None for upload, ctrl+v and webcam
             run_button = gr.Button(value="Run")
             
         with gr.Column():
