@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
 # from foo import hello
 import gradio as gr
+from gradio_imageslider import ImageSlider
 from briarmbg import BriaRMBG
 import PIL
 from PIL import Image
