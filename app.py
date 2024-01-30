@@ -1,14 +1,14 @@
 import numpy as np
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
-from briarmbg import BriaRMBG
 import gradio as gr
 import git  # pip install gitpython
 
+git.Git(".").clone("https://huggingface.co/spaces/briaai/BRIA-RMBG-1.4")
+from briarmbg import BriaRMBG
+
 net=BriaRMBG()
 model_path = "./model.pth"
-git.Git(".").clone("https://huggingface.co/spaces/briaai/BRIA-RMBG-1.4")
-
 if torch.cuda.is_available():
     net.load_state_dict(torch.load(model_path))
     net=net.cuda()
