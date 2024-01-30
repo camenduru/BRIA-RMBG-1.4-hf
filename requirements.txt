@@ -4,3 +4,4 @@ torchvision
 pillow
 numpy
 typing
+gitpython
