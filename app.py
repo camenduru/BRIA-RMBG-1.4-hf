@@ -1,8 +1,11 @@
 import numpy as np
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
+from foo import hello
 import gradio as gr
 import git  # pip install gitpython
+
+hello()
 
 git.Git(".").clone("https://huggingface.co/briaai/RMBG-1.4")
 # git.Git(".").clone("git@hf.co:briaai/RMBG-1.4")
