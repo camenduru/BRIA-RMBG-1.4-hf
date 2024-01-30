@@ -1,7 +1,7 @@
 import numpy as np
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
-from models import BriaRMBG
+from briarmbg import BriaRMBG
 import gradio as gr
 import git  # pip install gitpython
 
