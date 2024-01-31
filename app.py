@@ -44,7 +44,7 @@ def resize_image(image):
     return image
 
 
-def process(Image):
+def process(image):
 
     # prepare input
     orig_image = Image.fromarray(image)
@@ -111,7 +111,7 @@ title = "Background Removal"
 description = "Remove Image Background"
 examples = [['./input.jpg'],]
 output = ImageSlider(position=0.5,label='Image without background', type="pil", show_download_button=True)
-demo = gr.Interface(fn=process,inputs="Image", outputs=output, examples=examples, title=title, description=description)
+demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
 
 if __name__ == "__main__":
     demo.launch(share=False)
