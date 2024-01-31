@@ -18,29 +18,11 @@ else:
     net.load_state_dict(torch.load(model_path,map_location="cpu"))
 net.eval() 
 
-def image_size_by_min_resolution(
-    image: Image.Image,
-    resolution: Tuple,
-    resample=None,
-):
-    w, h = image.size  
-
-    image_min = min(w, h)
-    resolution_min = min(resolution)
-
-    scale_factor = image_min / resolution_min
-
-    resize_to: Tuple[int, int] = (
-        int(w // scale_factor),
-        int(h // scale_factor),
-    )
-    return resize_to
     
-
 def resize_image(image):
     image = image.convert('RGB')
-    new_image_size = image_size_by_min_resolution(image=image,resolution=(1024, 1024))
-    image = image.resize(new_image_size, Image.BILINEAR)
+    model_input_size = (1024, 1024)
+    image = image.resize(model_input_size, Image.BILINEAR)
     return image
 
 
