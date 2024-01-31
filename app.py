@@ -57,9 +57,10 @@ def process(image):
     print(type(image))
     print(image.shape)
     orig_image = Image.fromarray(image)
-    return [orig_image,orig_image]
+    # return [orig_image,orig_image]
     w,h = orig_im_size = orig_image.size
     image = resize_image(orig_image)
+    print("process debug1")    
     im_np = np.array(image)
     im_tensor = torch.tensor(im_np, dtype=torch.float32).permute(2,0,1)
     im_tensor = torch.unsqueeze(im_tensor,0)
@@ -67,24 +68,25 @@ def process(image):
     im_tensor = normalize(im_tensor,[0.5,0.5,0.5],[1.0,1.0,1.0])
     if torch.cuda.is_available():
         im_tensor=im_tensor.cuda()
-    
+
+    print("process debug2")
     #inference
     result=net(im_tensor)
-
+    print("process debug3")
     # post process
     result = torch.squeeze(F.interpolate(result[0][0], size=(h,w), mode='bilinear') ,0)
     ma = torch.max(result)
     mi = torch.min(result)
     result = (result-mi)/(ma-mi)    
-
-    # save result
+    print("process debug4")
+    # image to pil
     im_array = (result*255).cpu().data.numpy().astype(np.uint8)
     pil_im = Image.fromarray(np.squeeze(im_array))
     # paste the mask on the original image
     new_im = Image.new("RGBA", pil_im.size, (0,0,0))
     new_im.paste(orig_image, mask=pil_im)
 
-    return [new_im]
+    return [orig_image, new_im]
 
 
 # block = gr.Blocks().queue()
