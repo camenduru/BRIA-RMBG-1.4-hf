@@ -10,7 +10,7 @@ from PIL import Image
 from typing import Tuple
 
 net=BriaRMBG()
-model_path = "./model.pth"
+model_path = "./model1.pth"
 if torch.cuda.is_available():
     net.load_state_dict(torch.load(model_path))
     net=net.cuda()
@@ -69,7 +69,7 @@ def process(image):
     im_array = (result*255).cpu().data.numpy().astype(np.uint8)
     pil_im = Image.fromarray(np.squeeze(im_array))
     # paste the mask on the original image
-    new_im = Image.new("RGBA", pil_im.size, (0,0,0))
+    new_im = Image.new("RGBA", pil_im.size, (0,0,0,0))
     new_im.paste(orig_image, mask=pil_im)
 
     return [orig_image, new_im]
