@@ -57,7 +57,7 @@ def process(image):
     print(type(image))
     print(image.shape)
     orig_image = Image.fromarray(image)
-    return [orig_image]
+    return [orig_image,orig_image]
     w,h = orig_im_size = orig_image.size
     image = resize_image(orig_image)
     im_np = np.array(image)
