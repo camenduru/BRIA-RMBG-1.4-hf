@@ -56,7 +56,7 @@ def process(image):
     new_orig_image = new_orig_image.convert('RGBA')
 
     # return new_im
-    return [new_orig_image, new_im]
+    return [orig_image, new_im]
 
 
 # block = gr.Blocks().queue()
