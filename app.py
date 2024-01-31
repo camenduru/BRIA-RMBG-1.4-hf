@@ -44,7 +44,7 @@ def resize_image(image):
     return image
 
 
-def process(image):
+def process(Image):
 
     # prepare input
     orig_image = Image.fromarray(image)
