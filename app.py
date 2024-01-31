@@ -2,19 +2,12 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
-# from foo import hello
 import gradio as gr
 from gradio_imageslider import ImageSlider
 from briarmbg import BriaRMBG
 import PIL
 from PIL import Image
 from typing import Tuple
-# import git  # pip install gitpython
-
-# hello()
-
-# git.Git(".").clone("https://huggingface.co/briaai/RMBG-1.4")
-# git.Git(".").clone("git@hf.co:briaai/RMBG-1.4")
 
 net=BriaRMBG()
 model_path = "./model.pth"
@@ -54,13 +47,9 @@ def resize_image(image):
 def process(image):
 
     # prepare input
-    print(type(image))
-    print(image.shape)
     orig_image = Image.fromarray(image)
-    # return [orig_image,orig_image]
     w,h = orig_im_size = orig_image.size
     image = resize_image(orig_image)
-    print("process debug1")    
     im_np = np.array(image)
     im_tensor = torch.tensor(im_np, dtype=torch.float32).permute(2,0,1)
     im_tensor = torch.unsqueeze(im_tensor,0)
@@ -69,16 +58,13 @@ def process(image):
     if torch.cuda.is_available():
         im_tensor=im_tensor.cuda()
 
-    print("process debug2")
     #inference
     result=net(im_tensor)
-    print("process debug3")
     # post process
     result = torch.squeeze(F.interpolate(result[0][0], size=(h,w), mode='bilinear') ,0)
     ma = torch.max(result)
     mi = torch.min(result)
     result = (result-mi)/(ma-mi)    
-    print("process debug4")
     # image to pil
     im_array = (result*255).cpu().data.numpy().astype(np.uint8)
     pil_im = Image.fromarray(np.squeeze(im_array))
@@ -112,12 +98,20 @@ def process(image):
 
 # block.launch(debug = True)
 
+# block = gr.Blocks().queue()
 
-title = "background_removal"
-description = "remove image background"
+gr.Markdown("## BRIA RMBG 1.4")
+gr.HTML('''
+  <p style="margin-bottom: 10px; font-size: 94%">
+    This is a demo for BRIA RMBG 1.4 that using
+    <a href="https://huggingface.co/briaai/RMBG-1.4" target="_blank">BRIA RMBG-1.4 image matting model</a> as backbone. 
+  </p>
+''')
+title = "Background Removal"
+description = "Remove Image Background"
 examples = [['./input.jpg'],]
-output = ImageSlider(position=0.5,label='Image without background slider-view', type="pil")
-demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
+output = ImageSlider(position=0.5,label='Image without background', type="pil", show_download_button=True)
+demo = gr.Interface(fn=process,inputs="Image", outputs=output, examples=examples, title=title, description=description)
 
 if __name__ == "__main__":
     demo.launch(share=False)
