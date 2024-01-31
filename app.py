@@ -113,7 +113,8 @@ def process(image):
 title = "background_removal"
 description = "remove image background"
 examples = [['./input.jpg'],]
-demo = gr.Interface(fn=process,inputs="image",outputs=ImageSlider(position=0.5,label='Image without background slider-view'),examples=examples,title=title,description=description, type="pil")
+output = ImageSlider(position=0.5,label='Image without background slider-view', type="pil")
+demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
 
 if __name__ == "__main__":
     demo.launch(share=False)
