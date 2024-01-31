@@ -55,7 +55,7 @@ def process(image):
     new_im.paste(orig_image, mask=pil_im)
 
     # return new_im
-    return [orig_image, new_im]
+    return [new_im, new_im]
 
 
 # block = gr.Blocks().queue()
@@ -91,7 +91,7 @@ gr.HTML('''
   </p>
 ''')
 title = "Background Removal"
-description = "Remove Image Background"
+description = "Remove background from any image"
 examples = [['./input.jpg'],]
 output = ImageSlider(position=0.5,label='Image without background', type="pil", show_download_button=True)
 demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
