@@ -92,7 +92,7 @@ gr.HTML('''
   </p>
 ''')
 title = "Background Removal"
-description = "Remove background from any image"
+description = "Remove background from any image" [BRIA AI](https://bria.ai/)
 examples = [['./input.jpg'],]
 # output = ImageSlider(position=0.5,label='Image without background', type="pil", show_download_button=True)
 # demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
