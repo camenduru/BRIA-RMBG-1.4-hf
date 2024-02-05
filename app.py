@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
+from huggingface_hub import hf_hub_download
 import gradio as gr
 from gradio_imageslider import ImageSlider
 from briarmbg import BriaRMBG
