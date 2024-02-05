@@ -10,7 +10,8 @@ from PIL import Image
 from typing import Tuple
 
 net=BriaRMBG()
-model_path = "./model1.pth"
+# model_path = "./model1.pth"
+model_path = hf_hub_download("briaai/RMBG-1.4", 'model.pth')
 if torch.cuda.is_available():
     net.load_state_dict(torch.load(model_path))
     net=net.cuda()
