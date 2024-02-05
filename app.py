@@ -94,7 +94,9 @@ gr.HTML('''
   </p>
 ''')
 title = "Background Removal"
-description = "Background removal model developed by BRIA.AI, trained on a carefully selected dataset and is  available as an open-source model for non-commercial use. For test  upload your image and wait. Read more at model card (https://huggingface.co/briaai/RMBG-1.4) (edited) " 
+description = r"""Background removal model developed by <a href='https://BRIA.AI' target='_blank'><b>BRIA.AI</b></a>, trained on a carefully selected dataset and is available as an open-source model for non-commercial use.<br> 
+<a href='https://huggingface.co/briaai/RMBG-1.4' target='_blank'><b>briaai/RMBG-1.4</b></a>.<br>
+"""
 examples = [['./input.jpg'],]
 # output = ImageSlider(position=0.5,label='Image without background', type="pil", show_download_button=True)
 # demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
