@@ -6,3 +6,4 @@ pillow
 numpy
 typing
 gitpython
+huggingface_hub
