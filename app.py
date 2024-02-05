@@ -94,7 +94,7 @@ gr.HTML('''
   </p>
 ''')
 title = "Background Removal"
-description = "Remove background from any image" 
+description = "Background removal model developed by BRIA.AI, trained on a carefully selected dataset and is  available as an open-source model for non-commercial use. For test  upload your image and wait. Read more at model card (https://huggingface.co/briaai/RMBG-1.4) (edited) " 
 examples = [['./input.jpg'],]
 # output = ImageSlider(position=0.5,label='Image without background', type="pil", show_download_button=True)
 # demo = gr.Interface(fn=process,inputs="image", outputs=output, examples=examples, title=title, description=description)
